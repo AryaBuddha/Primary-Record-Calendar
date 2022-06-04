@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .custom-component {
+    @apply bg-slate-300 rounded-lg max-w-xs md:max-w-[33rem] 2xl:max-w-[35rem] mb-2 md:mb-0 w-full mt-3;
+  }
+}
