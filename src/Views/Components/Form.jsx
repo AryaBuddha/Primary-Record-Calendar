@@ -40,7 +40,7 @@ const Form = () => {
 
       axios
         .post(
-          "http://localhost:4000/events/add",
+          `${process.env.API_URL}/events/add`,
           { event: event, user: "bob@gmail.com" },
           {
             headers: {

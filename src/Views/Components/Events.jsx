@@ -11,7 +11,7 @@ const Event = ({ data, primaryID, googleEventID, refreshData }) => {
   const deleteEvent = () => {
     axios
       .post(
-        "http://localhost:4000/events/delete",
+        `${process.env.API_URL}/events/delete`,
         {
           user: "bob@gmail.com",
           primaryID: primaryID,
@@ -112,7 +112,7 @@ const Events = () => {
   const refreshData = () => {
     axios
       .post(
-        "http://localhost:4000/events/getAll",
+        `${process.env.API_URL}/events/getAll`,
         { user: "bob@gmail.com" },
         {
           headers: {
