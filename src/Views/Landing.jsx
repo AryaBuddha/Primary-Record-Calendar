@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
@@ -6,6 +6,7 @@ import axios from "axios";
 import { AiOutlineGoogle } from "react-icons/ai";
 
 import Form from "./Components/Form";
+import Events from "./Components/Events";
 
 const Landing = () => {
   const login = useGoogleLogin({
@@ -28,17 +29,16 @@ const Landing = () => {
 
   return (
     <div className="grid place-items-center h-screen p-6">
-      <div className="max-w-5xl max-h-[35rem] h-full w-full shadow-2xl shadow-blue-500/40 rounded-2xl p-6">
+      <div className="max-w-5xl max-h-[40rem] h-full w-full shadow-2xl shadow-blue-500/40 rounded-2xl p-6">
         <div className="flex">
           <h1 className="text-3xl font-semibold">Events</h1>
           <button className="border-blue-50" onClick={() => login()}>
-            Sign in withf google
+            Sign in with Google
           </button>
         </div>
 
-        <h1 className="text-xl mt-5">Create new Event</h1>
-
         <Form />
+        <Events />
       </div>
     </div>
   );
