@@ -6,6 +6,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Landing from "./Views/Landing";
 
 const App = () => {
+  console.log(process.env.REACT_APP_BACKEND_URL);
   return (
     <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
       <BrowserRouter>

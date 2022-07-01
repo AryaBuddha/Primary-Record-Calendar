@@ -13,7 +13,7 @@ const Landing = () => {
     onSuccess: (codeResponse) => {
       console.log(codeResponse);
       axios.post(
-        `${process.env.API_URL}/googleauth`,
+        `${process.env.REACT_APP_BACKEND_URL}/googleauth`,
         { code: codeResponse.code, user: "bob@gmail.com" },
         {
           headers: {

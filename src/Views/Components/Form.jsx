@@ -40,7 +40,7 @@ const Form = () => {
 
       axios
         .post(
-          `${process.env.API_URL}/events/add`,
+          `${process.env.REACT_APP_BACKEND_URL}/events/add`,
           { event: event, user: "bob@gmail.com" },
           {
             headers: {

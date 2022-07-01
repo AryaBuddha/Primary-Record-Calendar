@@ -51,7 +51,7 @@ const EditForm = ({
 
       axios
         .post(
-          `${process.env.API_URL}/events/edit`,
+          `${process.env.REACT_APP_BACKEND_URL}/events/edit`,
           {
             event: event,
             user: "bob@gmail.com",
