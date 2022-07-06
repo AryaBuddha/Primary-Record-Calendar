@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import axios from "axios";
 
-const Form = () => {
+const Form = ({ user }) => {
   const [title, setTitle] = useState("");
   const [notes, setNotes] = useState("");
   const [startDate, setStartDate] = useState(undefined);
@@ -41,7 +41,7 @@ const Form = () => {
       axios
         .post(
           `${process.env.REACT_APP_BACKEND_URL}/events/add`,
-          { event: event, user: "bob@gmail.com" },
+          { event: event, user: user },
           {
             headers: {
               "Content-Type": "application/json",

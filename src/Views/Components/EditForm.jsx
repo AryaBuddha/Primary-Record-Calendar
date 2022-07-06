@@ -5,10 +5,11 @@ import dayjs from "dayjs";
 
 const EditForm = ({
   data,
-  primaryID,
-  googleEventID,
+  primaryId,
+  googleEventId,
   setEditMode,
   refreshData,
+  user,
 }) => {
   const [title, setTitle] = useState(data.summary);
   const [notes, setNotes] = useState(data.description);
@@ -22,7 +23,7 @@ const EditForm = ({
 
   const [errors, setErrors] = useState(null);
   const [success, setSuccess] = useState(false);
-
+  console.log(primaryId);
   const handleSubmit = () => {
     if (
       title.length > 0 &&
@@ -34,7 +35,7 @@ const EditForm = ({
       const event = {
         summary: title,
         location: "100 Washington Street",
-        description: `Notes:\n${notes}`,
+        description: `${notes}`,
         start: {
           dateTime: `${startDate}:00`,
           timeZone: "America/Los_Angeles",
@@ -54,9 +55,9 @@ const EditForm = ({
           `${process.env.REACT_APP_BACKEND_URL}/events/edit`,
           {
             event: event,
-            user: "bob@gmail.com",
-            primaryID: primaryID,
-            googleEventID: googleEventID,
+            user: user,
+            primaryId: primaryId,
+            googleEventId: googleEventId,
           },
           {
             headers: {
@@ -65,13 +66,11 @@ const EditForm = ({
           }
         )
         .then((res) => {
-          console.log(res);
-          if (res.data.status === 200) {
-            setSuccess(res.data.message);
-            refreshData();
-            setEditMode(false);
-          }
+          setSuccess(res.data.message);
+          refreshData();
           setErrors(null);
+          console.log(res);
+          setEditMode(false);
         });
     } else {
       setErrors("Please fill out all fields");

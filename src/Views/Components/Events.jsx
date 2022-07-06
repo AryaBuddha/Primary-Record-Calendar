@@ -7,15 +7,15 @@ import axios from "axios";
 import { FiEdit2 } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
 
-const Event = ({ data, primaryID, googleEventID, refreshData }) => {
+const Event = ({ data, primaryId, googleEventId, refreshData, user }) => {
   const deleteEvent = () => {
     axios
       .post(
         `${process.env.REACT_APP_BACKEND_URL}/events/delete`,
         {
-          user: "bob@gmail.com",
-          primaryID: primaryID,
-          googleEventID: googleEventID,
+          user: user,
+          primaryId: primaryId,
+          googleEventId: googleEventId,
         },
         {
           headers: {
@@ -44,10 +44,11 @@ const Event = ({ data, primaryID, googleEventID, refreshData }) => {
     return (
       <EditForm
         data={data}
-        primaryID={primaryID}
-        googleEventID={googleEventID}
+        primaryId={primaryId}
+        googleEventId={googleEventId}
         setEditMode={setEditMode}
         refreshData={refreshData}
+        user={user}
       />
     );
   }
@@ -106,14 +107,15 @@ const Event = ({ data, primaryID, googleEventID, refreshData }) => {
   );
 };
 
-const Events = () => {
+const Events = ({ user }) => {
+  console.log(user);
   const [data, setData] = useState(null);
 
   const refreshData = () => {
     axios
       .post(
         `${process.env.REACT_APP_BACKEND_URL}/events/getAll`,
-        { user: "bob@gmail.com" },
+        { user: user },
         {
           headers: {
             "Content-Type": "application/json",
@@ -128,7 +130,7 @@ const Events = () => {
 
   useEffect(() => {
     refreshData();
-  }, []);
+  }, [user]);
 
   return (
     <div className="mt-11 ">
@@ -140,9 +142,10 @@ const Events = () => {
             return (
               <Event
                 data={event.event}
-                primaryID={event.primaryID}
-                googleEventID={event.googleEventID}
+                primaryId={event.primaryId}
+                googleEventId={event.googleEventId}
                 refreshData={refreshData}
+                user={user}
               />
             );
           })}
