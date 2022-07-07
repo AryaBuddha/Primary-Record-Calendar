@@ -42,7 +42,7 @@ const Landing = ({ theUser, setTheUser }) => {
       <div className="max-w-5xl max-h-[40rem] h-full w-full shadow-2xl shadow-blue-500/40 rounded-2xl p-6">
         <div className="flex">
           <h1 className="text-3xl font-semibold">Events</h1>
-          <button className="border-blue-50" disabled onClick={() => login()}>
+          <button className="border-blue-50" onClick={() => login()}>
             Sign in with Google
           </button>
         </div>
