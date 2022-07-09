@@ -105,14 +105,6 @@ const Services = ({ user, setUser, setTheUser }) => {
 
         <h1 className="text-sm text-green-600">{sucessMessage}</h1>
       </div>
-
-      {/* <div className=" top-52 left-[37rem] max-w-3xl max-h-[15rem] h-full w-full shadow-2xl shadow-blue-500/40 bg-slate-400 rounded-2xl p-6 fixed z-auto text-white">
-        <h1 className="text-2xl font-semibold">iCal Link</h1>
-        <p className="text-xl mb-11">Add this link to your calendar</p>
-        <code className="text-sm bg-white text-slate-600 p-5">
-        https://primary-record-backen/calendars/getCal/54c47160-7205-47ea-a2c0-42827f44a7d8
-        </code>
-      </div> */}
     </>
   );
 };
