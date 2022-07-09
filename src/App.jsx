@@ -14,23 +14,27 @@ const App = () => {
   }, [user]);
   return (
     <>
-      <input
-        placeholder="Debug Email"
-        className="p-3 border-2 fixed"
-        value={rawUser}
-        onChange={(e) => {
-          setRawUser(e.target.value);
-        }}
-      />
-      <button
-        className="p-3 border-4 fixed ml-60"
-        onClick={() => {
-          setUser(rawUser);
-          localStorage.setItem("user", rawUser);
-        }}
-      >
-        Submit
-      </button>
+      <form>
+        <input
+          placeholder="Debug Email"
+          className="p-3 border-2 fixed"
+          value={rawUser}
+          onChange={(e) => {
+            setRawUser(e.target.value);
+          }}
+        />
+        <button
+          className="p-3 border-4 fixed ml-60"
+          type="submit"
+          onClick={(e) => {
+            e.preventDefault();
+            setUser(rawUser);
+            localStorage.setItem("user", rawUser);
+          }}
+        >
+          Submit
+        </button>
+      </form>
       <h1 className="fixed mt-16 font-bold">DEBUG ONLY</h1>
       <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
         <BrowserRouter>
