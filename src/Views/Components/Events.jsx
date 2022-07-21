@@ -74,8 +74,10 @@ const Event = ({ data, primaryId, googleEventId, refreshData, user }) => {
             />
           </div>
         </div>
+        <a className="link text-blue-500" href={data.url}>
+          {data.url}
+        </a>
         <h1>{data.location}</h1>
-
         <div className="flex w-full  border-b-2 pb-3 mb-3">
           {dayjs(data.start.dateTime).format("MMM DD, YYYY") ===
           dayjs(data.end.dateTime).format("MMM DD, YYYY") ? (
@@ -100,7 +102,7 @@ const Event = ({ data, primaryId, googleEventId, refreshData, user }) => {
             </>
           )}
         </div>
-
+        <h1>Notes:</h1>
         <h1 style={{ whiteSpace: "pre-line" }}>{data.description}</h1>
       </div>
     </div>

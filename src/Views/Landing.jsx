@@ -6,6 +6,7 @@ import axios from "axios";
 import Form from "./Components/Form";
 import Events from "./Components/Events";
 import Services from "./Components/Services";
+import Preferences from "./Components/Preferences";
 
 const Landing = ({ theUser, setTheUser }) => {
   const [user, setUser] = useState(null);
@@ -20,6 +21,7 @@ const Landing = ({ theUser, setTheUser }) => {
         <div className="flex">
           <h1 className="text-3xl font-semibold">Events</h1>
           <Services user={user} setUser={setUser} setTheUser={setTheUser} />
+          <Preferences user={user} />
         </div>
 
         <Form user={user} />

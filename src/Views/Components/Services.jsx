@@ -8,7 +8,7 @@ import { AiOutlineApple, AiOutlineCheck } from "react-icons/ai";
 
 const Services = ({ user, setUser, setTheUser }) => {
   const [service, setService] = useState(null);
-  const [sucessMessage, setSucessMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const loginGoogle = useGoogleLogin({
     onSuccess: (codeResponse) => {
@@ -27,7 +27,7 @@ const Services = ({ user, setUser, setTheUser }) => {
           console.log(res);
           setUser(res.data.user);
           setTheUser(res.data.user);
-          setSucessMessage("Successfully logged in with Google!");
+          setSuccessMessage("Successfully logged in with Google!");
         });
     },
     flow: "auth-code",
@@ -48,7 +48,7 @@ const Services = ({ user, setUser, setTheUser }) => {
         }
       )
       .then((res) => {
-        setSucessMessage(
+        setSuccessMessage(
           `Successfully added! Please add ${process.env.REACT_APP_BACKEND_URL}/calendars/getCal/${res.data.iCalID} to your calendar`
         );
       });
@@ -69,7 +69,7 @@ const Services = ({ user, setUser, setTheUser }) => {
         console.log(res);
         setService(res.data.service);
       });
-    setSucessMessage(null);
+    setSuccessMessage(null);
   }, [user]);
 
   console.log(service);
@@ -103,7 +103,7 @@ const Services = ({ user, setUser, setTheUser }) => {
           )}
         </button>
 
-        <h1 className="text-sm text-green-600">{sucessMessage}</h1>
+        <h1 className="text-sm text-green-600">{successMessage}</h1>
       </div>
     </>
   );

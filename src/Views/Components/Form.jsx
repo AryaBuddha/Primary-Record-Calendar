@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 
@@ -9,8 +9,27 @@ const Form = ({ user }) => {
   const [endDate, setEndDate] = useState(undefined);
   const [recurring, setRecurring] = useState("DAILY");
 
+  const [preferences, setPreferences] = useState(null);
+
   const [errors, setErrors] = useState(null);
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_URL}/preferences`,
+        { user: user },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        setPreferences(res.data);
+        console.log(res.data);
+      });
+  }, [user]);
 
   const handleSubmit = () => {
     if (
@@ -23,18 +42,22 @@ const Form = ({ user }) => {
       const event = {
         summary: title,
         location: "100 Washington Street",
-        description: `Notes:\n${notes}`,
+        description: notes,
         start: {
           dateTime: `${startDate}:00`,
-          timeZone: "America/Los_Angeles",
+          timeZone: preferences.timezone,
         },
         end: {
           dateTime: `${endDate}:00`,
-          timeZone: "America/Los_Angeles",
+          timeZone: preferences.timezone,
         },
         recurrence: recurring != "None" ? [`RRULE:FREQ=${recurring}`] : [],
+        visibility: preferences.visibility,
+        transparency:
+          preferences.availability == "busy" ? "opaque" : "transparent",
         reminders: {
-          useDefault: true,
+          useDefault: false,
+          overrides: [{ method: "popup", minutes: preferences.reminderBefore }],
         },
       };
 
