@@ -75,9 +75,9 @@ const Form = ({ user }) => {
           console.log(res);
           if (res.data.status === 200) {
             setSuccess(res.data.message);
-            window.location.reload()
           }
           setErrors(null);
+          window.location.reload()
         });
     } else {
       setErrors("Please fill out all fields");
