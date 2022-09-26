@@ -75,7 +75,9 @@ const Form = ({ user }) => {
           console.log(res);
           if (res.data.status === 200) {
             setSuccess(res.data.message);
-            
+            setTimeout(() => {
+              window.location.reload()
+            }, 3000)
           }
           setErrors(null);
           
